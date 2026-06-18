@@ -1,52 +1,43 @@
 public class BookMyStay {
-
     public static void main(String[] args) {
 
-        InventoryService inventoryService =
-                new InventoryService();
+        BookingQueueService bookingQueue =
+                new BookingQueueService();
 
-        inventoryService.addRoom(
-                new Room(
-                        "Single",
-                        10,
-                        1500,
-                        "WiFi, TV"
+        bookingQueue.addBookingRequest(
+                new Reservation(
+                        101,
+                        "Niranjan",
+                        "Single"
                 )
         );
 
-        inventoryService.addRoom(
-                new Room(
-                        "Double",
-                        5,
-                        2500,
-                        "WiFi, TV, AC"
+        bookingQueue.addBookingRequest(
+                new Reservation(
+                        102,
+                        "Arun",
+                        "Double"
                 )
         );
 
-        inventoryService.addRoom(
-                new Room(
-                        "Suite",
-                        0,
-                        5000,
-                        "WiFi, TV, AC, Mini Bar"
+        bookingQueue.addBookingRequest(
+                new Reservation(
+                        103,
+                        "Kumar",
+                        "Suite"
                 )
         );
 
-        SearchService searchService =
-                new SearchService(inventoryService);
+        bookingQueue.displayQueue();
 
-        searchService.displayAvailableRooms();
+        System.out.println();
 
-        searchService.searchRoomByType("Double");
+        bookingQueue.processNextRequest();
 
-        System.out.println(
-                "\nCan Book Suite ? "
-                        + searchService.isRoomAvailable("Suite")
-        );
+        bookingQueue.processNextRequest();
 
-        System.out.println(
-                "Can Book Single ? "
-                        + searchService.isRoomAvailable("Single")
-        );
+        System.out.println();
+
+        bookingQueue.displayQueue();
     }
 }
