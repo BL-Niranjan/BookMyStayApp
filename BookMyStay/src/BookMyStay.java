@@ -5,27 +5,48 @@ public class BookMyStay {
         InventoryService inventoryService =
                 new InventoryService();
 
-        // Initialize Room Types
+        inventoryService.addRoom(
+                new Room(
+                        "Single",
+                        10,
+                        1500,
+                        "WiFi, TV"
+                )
+        );
 
-        inventoryService.addRoomType(
-                "Single", 20, 1500);
+        inventoryService.addRoom(
+                new Room(
+                        "Double",
+                        5,
+                        2500,
+                        "WiFi, TV, AC"
+                )
+        );
 
-        inventoryService.addRoomType(
-                "Double", 15, 2500);
+        inventoryService.addRoom(
+                new Room(
+                        "Suite",
+                        0,
+                        5000,
+                        "WiFi, TV, AC, Mini Bar"
+                )
+        );
 
-        inventoryService.addRoomType(
-                "Suite", 5, 5000);
+        SearchService searchService =
+                new SearchService(inventoryService);
 
-        // Update Inventory
+        searchService.displayAvailableRooms();
 
-        inventoryService.updateRoomCount(
-                "Single", 18);
+        searchService.searchRoomByType("Double");
 
-        inventoryService.updateRoomPrice(
-                "Suite", 5500);
+        System.out.println(
+                "\nCan Book Suite ? "
+                        + searchService.isRoomAvailable("Suite")
+        );
 
-        // Display Availability
-
-        inventoryService.displayAvailability();
+        System.out.println(
+                "Can Book Single ? "
+                        + searchService.isRoomAvailable("Single")
+        );
     }
 }
