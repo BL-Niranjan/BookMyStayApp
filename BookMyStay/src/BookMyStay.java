@@ -1,43 +1,42 @@
 public class BookMyStay {
+
     public static void main(String[] args) {
 
-        BookingQueueService bookingQueue =
-                new BookingQueueService();
-
-        bookingQueue.addBookingRequest(
+        Reservation reservation =
                 new Reservation(
-                        101,
-                        "Niranjan",
-                        "Single"
+                        "R101",
+                        "Niranjan"
+                );
+
+        ServiceManagement serviceManagement =
+                new ServiceManagement();
+
+        serviceManagement.addService(
+                reservation.getReservationId(),
+                new Service(
+                        "Breakfast",
+                        500
                 )
         );
 
-        bookingQueue.addBookingRequest(
-                new Reservation(
-                        102,
-                        "Arun",
-                        "Double"
+        serviceManagement.addService(
+                reservation.getReservationId(),
+                new Service(
+                        "Spa",
+                        1500
                 )
         );
 
-        bookingQueue.addBookingRequest(
-                new Reservation(
-                        103,
-                        "Kumar",
-                        "Suite"
+        serviceManagement.addService(
+                reservation.getReservationId(),
+                new Service(
+                        "Airport Pickup",
+                        800
                 )
         );
 
-        bookingQueue.displayQueue();
-
-        System.out.println();
-
-        bookingQueue.processNextRequest();
-
-        bookingQueue.processNextRequest();
-
-        System.out.println();
-
-        bookingQueue.displayQueue();
+        serviceManagement.displayServices(
+                reservation.getReservationId()
+        );
     }
 }
