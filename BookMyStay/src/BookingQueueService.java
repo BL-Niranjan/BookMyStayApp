@@ -9,51 +9,22 @@ public class BookingQueueService {
         bookingQueue = new LinkedList<>();
     }
 
-    public void addBookingRequest(Reservation reservation) {
+    public void addBookingRequest(
+            Reservation reservation) {
 
         bookingQueue.offer(reservation);
 
         System.out.println(
                 reservation.getGuestName()
-                        + " added to booking queue."
+                        + " added to queue."
         );
     }
 
-    public void processNextRequest() {
-
-        if (bookingQueue.isEmpty()) {
-
-            System.out.println(
-                    "No booking requests available."
-            );
-            return;
-        }
-
-        Reservation reservation =
-                bookingQueue.poll();
-
-        System.out.println(
-                "Processing -> " + reservation
-        );
+    public Reservation getNextRequest() {
+        return bookingQueue.poll();
     }
 
-    public void displayQueue() {
-
-        System.out.println(
-                "\n===== BOOKING QUEUE ====="
-        );
-
-        if (bookingQueue.isEmpty()) {
-
-            System.out.println(
-                    "Queue is empty."
-            );
-            return;
-        }
-
-        for (Reservation reservation : bookingQueue) {
-
-            System.out.println(reservation);
-        }
+    public boolean isEmpty() {
+        return bookingQueue.isEmpty();
     }
 }

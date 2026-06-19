@@ -1,10 +1,20 @@
 public class BookMyStay {
+
     public static void main(String[] args) {
 
-        BookingQueueService bookingQueue =
+        InventoryService inventory =
+                new InventoryService();
+
+        inventory.addRoomType(
+                "Single", 2);
+
+        inventory.addRoomType(
+                "Double", 1);
+
+        BookingQueueService queue =
                 new BookingQueueService();
 
-        bookingQueue.addBookingRequest(
+        queue.addBookingRequest(
                 new Reservation(
                         101,
                         "Niranjan",
@@ -12,32 +22,39 @@ public class BookMyStay {
                 )
         );
 
-        bookingQueue.addBookingRequest(
+        queue.addBookingRequest(
                 new Reservation(
                         102,
                         "Arun",
-                        "Double"
+                        "Single"
                 )
         );
 
-        bookingQueue.addBookingRequest(
+        queue.addBookingRequest(
                 new Reservation(
                         103,
                         "Kumar",
-                        "Suite"
+                        "Single"
                 )
         );
 
-        bookingQueue.displayQueue();
+        BookingService bookingService =
+                new BookingService(inventory);
 
-        System.out.println();
+        while (!queue.isEmpty()) {
 
-        bookingQueue.processNextRequest();
+            Reservation reservation =
+                    queue.getNextRequest();
 
-        bookingQueue.processNextRequest();
+            bookingService
+                    .confirmReservation(
+                            reservation
+                    );
+        }
 
-        System.out.println();
+        bookingService
+                .displayAllocatedRooms();
 
-        bookingQueue.displayQueue();
+        inventory.displayInventory();
     }
 }

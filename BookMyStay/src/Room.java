@@ -16,8 +16,14 @@ public class Room {
         return availableCount;
     }
 
+    public void decrementAvailability() {
+        availableCount--;
+    }
+
     @Override
     public String toString() {
-        return roomType + " Available Rooms : " + availableCount;
+        return roomType +
+                " Available Rooms : " +
+                availableCount;
     }
 }

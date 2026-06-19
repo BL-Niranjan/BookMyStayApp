@@ -24,11 +24,4 @@ public class Reservation {
     public String getRoomType() {
         return roomType;
     }
-
-    @Override
-    public String toString() {
-        return "Reservation ID : " + reservationId +
-                ", Guest : " + guestName +
-                ", Room Type : " + roomType;
-    }
 }
