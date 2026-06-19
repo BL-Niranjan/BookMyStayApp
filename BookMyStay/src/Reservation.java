@@ -1,34 +1,20 @@
 public class Reservation {
 
-    private int reservationId;
+    private String reservationId;
     private String guestName;
-    private String roomType;
 
-    public Reservation(int reservationId,
-                       String guestName,
-                       String roomType) {
+    public Reservation(String reservationId,
+                       String guestName) {
 
         this.reservationId = reservationId;
         this.guestName = guestName;
-        this.roomType = roomType;
     }
 
-    public int getReservationId() {
+    public String getReservationId() {
         return reservationId;
     }
 
     public String getGuestName() {
         return guestName;
-    }
-
-    public String getRoomType() {
-        return roomType;
-    }
-
-    @Override
-    public String toString() {
-        return "Reservation ID : " + reservationId +
-                ", Guest : " + guestName +
-                ", Room Type : " + roomType;
     }
 }
