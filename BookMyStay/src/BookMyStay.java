@@ -2,41 +2,48 @@ public class BookMyStay {
 
     public static void main(String[] args) {
 
-        Reservation reservation =
+        BookingHistoryService historyService =
+                new BookingHistoryService();
+
+        Reservation reservation1 =
                 new Reservation(
                         "R101",
-                        "Niranjan"
+                        "Niranjan",
+                        "Single"
                 );
 
-        ServiceManagement serviceManagement =
-                new ServiceManagement();
+        Reservation reservation2 =
+                new Reservation(
+                        "R102",
+                        "Arun",
+                        "Double"
+                );
 
-        serviceManagement.addService(
-                reservation.getReservationId(),
-                new Service(
-                        "Breakfast",
-                        500
-                )
+        Reservation reservation3 =
+                new Reservation(
+                        "R103",
+                        "Kumar",
+                        "Suite"
+                );
+
+        historyService.addReservation(
+                reservation1
         );
 
-        serviceManagement.addService(
-                reservation.getReservationId(),
-                new Service(
-                        "Spa",
-                        1500
-                )
+        historyService.addReservation(
+                reservation2
         );
 
-        serviceManagement.addService(
-                reservation.getReservationId(),
-                new Service(
-                        "Airport Pickup",
-                        800
-                )
+        historyService.addReservation(
+                reservation3
         );
 
-        serviceManagement.displayServices(
-                reservation.getReservationId()
+        historyService.cancelReservation(
+                "R102"
         );
+
+        historyService.displayBookingHistory();
+
+        historyService.generateReport();
     }
 }
